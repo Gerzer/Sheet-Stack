@@ -31,7 +31,7 @@ public final class SheetStack<SheetType>: ObservableObject where SheetType: Hash
 			return self.stack.last
 		}
 		set {
-			if let newValue = newValue {
+			if let newValue {
 				self.push(newValue)
 			} else {
 				self.pop()

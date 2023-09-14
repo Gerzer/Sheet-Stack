@@ -27,7 +27,7 @@ struct SheetPresentation<Provider>: ViewModifier where Provider: SheetPresentati
 				self.handle = self.sheetStack.register()
 			}
 			.onReceive(self.sheetStack.publisher) { (sheets) in
-				if sheets.count > self.handle.observedIndex {
+				if sheets.indices.contains(self.handle.observedIndex) {
 					self.sheetType = sheets[self.handle.observedIndex]
 				} else {
 					self.sheetType = nil
