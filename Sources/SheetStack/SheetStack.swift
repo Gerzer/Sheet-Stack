@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 
+/// A representation of a stack of modal sheets.
 @available(macOS 11, iOS 14, *)
 @MainActor
 public final class SheetStack<SheetType>: ObservableObject where SheetType: Hashable & Identifiable {
@@ -26,6 +27,7 @@ public final class SheetStack<SheetType>: ObservableObject where SheetType: Hash
 	
 	let publisher = PassthroughSubject<[SheetType?], Never>()
 	
+	/// The sheet type that’s currently at the top of this sheet stack.
 	public var top: SheetType? {
 		get {
 			return self.stack.last
@@ -39,20 +41,25 @@ public final class SheetStack<SheetType>: ObservableObject where SheetType: Hash
 		}
 	}
 	
+	/// The number of sheets that are currently presented.
 	public var count: Int {
 		get {
 			return self.stack.count
 		}
 	}
 	
+	/// Creates a sheet stack.
 	public init() { }
 	
+	/// Pushes a new sheet onto the stack.
+	/// - Parameter sheetType: The sheet type to push.
 	public func push(_ sheetType: SheetType) {
 		self.stack.append(sheetType)
 		self.publisher.send(self.stack)
 		self.objectWillChange.send()
 	}
 	
+	/// Pops the top sheet off of the stack.
 	public func pop() {
 		if !self.stack.isEmpty {
 			self.stack.removeLast()

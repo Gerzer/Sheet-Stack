@@ -66,6 +66,11 @@ struct SheetPresentation<Provider>: ViewModifier where Provider: SheetPresentati
 @available(macOS 11, iOS 14, *)
 extension View {
 	
+	/// Configures this view to present sheets via a sheet stack.
+	/// - Parameters:
+	///   - provider: The sheet presentation provider that generates the sheet content.
+	///   - sheetStack: The sheet stack.
+	/// - Returns: A view that’s configured to present sheets via a sheet stack.
 	public func sheetPresentation<SheetType>(
 		provider: some SheetPresentationProvider<SheetType>,
 		sheetStack: SheetStack<SheetType>

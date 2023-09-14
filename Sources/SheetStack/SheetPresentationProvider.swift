@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A type that generates sheet content.
 @available(macOS 11, iOS 14, *)
 public protocol SheetPresentationProvider<SheetType> {
 	
@@ -14,6 +15,9 @@ public protocol SheetPresentationProvider<SheetType> {
 	
 	associatedtype Content: View
 	
+	/// Generates the content of a sheet.
+	/// - Parameter sheetType: The sheet type for which to generate content.
+	/// - Returns: The sheet content.
 	@ViewBuilder
 	func content(sheetType: SheetType) -> Content
 	
